@@ -1,7 +1,9 @@
+using angular_api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +34,7 @@ namespace angular_api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "angular_api", Version = "v1" });
             });
+            services.AddDbContext<NetVetDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NetVetDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
