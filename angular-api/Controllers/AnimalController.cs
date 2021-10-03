@@ -47,14 +47,14 @@ namespace angular_api.Controllers
 
         // PUT: api/Animal/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAnimal([FromRoute] Guid AnimalId, [FromBody] Animal animal)
+        public async Task<IActionResult> PutAnimal([FromRoute] Guid id, [FromBody] Animal animal)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (AnimalId != animal.AnimalId)
+            if (id != animal.AnimalId)
             {
                 return BadRequest();
             }
@@ -67,7 +67,7 @@ namespace angular_api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AnimalExists(AnimalId))
+                if (!AnimalExists(id))
                 {
                     return NotFound();
                 }
@@ -98,14 +98,14 @@ namespace angular_api.Controllers
 
         // DELETE: api/Animal/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAnimal([FromRoute] Guid AnimalId)
+        public async Task<IActionResult> DeleteAnimal([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var animal = await _context.Animals.SingleOrDefaultAsync(m => m.AnimalId == AnimalId);
+            var animal = await _context.Animals.SingleOrDefaultAsync(m => m.AnimalId == id);
             if (animal == null)
             {
                 return NotFound();
@@ -117,9 +117,9 @@ namespace angular_api.Controllers
             return Ok(animal);
         }
 
-        private bool AnimalExists(Guid AnimalId)
+        private bool AnimalExists(Guid id)
         {
-            return _context.Animals.Any(e => e.AnimalId == AnimalId);
+            return _context.Animals.Any(e => e.AnimalId == id);
         }
     }
 }
