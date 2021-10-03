@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using angular_api.Models;
 
 namespace angular_api.Migrations
 {
     [DbContext(typeof(NetVetDbContext))]
-    partial class NetVetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211003093520_initial_migration_20211003_1635")]
+    partial class initial_migration_20211003_1635
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
